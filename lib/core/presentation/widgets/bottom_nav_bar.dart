@@ -1,8 +1,9 @@
-import 'package:akar_app/core/presentation/screens/home/ui/home_screen.dart';
+import 'package:akar_app/core/presentation/screens/home/home_screens/home_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
+  static const String id = '/BottomNavBar';
   const BottomNavBar({super.key});
 
   @override
@@ -18,6 +19,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     _screensListWithOnSelectAction = [
       {'widget': const HomeScreen(), 'onSelect': () {}},
+      {'widget': const Scaffold(backgroundColor: Colors.amber,), 'onSelect': (){}},
+      {'widget': const Scaffold(backgroundColor: Colors.blue,), 'onSelect': (){}},
+      {'widget': const Scaffold(backgroundColor: Colors.blueGrey,), 'onSelect': (){}},
     ];
     return Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
@@ -26,9 +30,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
             Icon(Icons.add, size: 30),
             Icon(Icons.list, size: 30),
             Icon(Icons.compare_arrows, size: 30),
+            Icon(Icons.abc_outlined, size: 30,)
           ],
           onTap: (index) {
-            _page = index;
+            setState(() {
+              _page = index;
+            });
           },
         ),
         body: GestureDetector(
