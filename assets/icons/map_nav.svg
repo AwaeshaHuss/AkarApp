@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27.734" height="29.628" viewBox="0 0 27.734 29.628">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_59" data-name="Rectangle 59" width="27.734" height="29.628" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Group_7972" data-name="Group 7972" transform="translate(-201.133 -1123.372)" opacity="0.4">
+    <g id="Group_7882" data-name="Group 7882" transform="translate(201.133 1123.372)">
+      <g id="Group_62" data-name="Group 62" transform="translate(0 0)" clip-path="url(#clip-path)">
+        <path id="Path_4006" data-name="Path 4006" d="M18.7,19.49,18.052,18.4c-.556-.94-5.429-9.273-5.429-12.329a6.072,6.072,0,1,1,12.144,0c0,3.057-4.873,11.389-5.429,12.329Zm0-18a4.584,4.584,0,0,0-4.579,4.578c0,1.963,2.884,7.464,4.579,10.456,1.694-2.992,4.578-8.493,4.578-10.456A4.583,4.583,0,0,0,18.7,1.494" transform="translate(-4.828 0)" fill="#fff"/>
+        <path id="Path_4007" data-name="Path 4007" d="M20.551,11a3.074,3.074,0,1,1,3.074-3.074A3.077,3.077,0,0,1,20.551,11m0-4.654a1.58,1.58,0,1,0,1.58,1.58,1.582,1.582,0,0,0-1.58-1.58" transform="translate(-6.685 -1.857)" fill="#fff"/>
+        <path id="Path_4008" data-name="Path 4008" d="M1.494,27.738H0V6.709A3.932,3.932,0,0,1,3.927,2.781h2.42V4.275H3.927A2.436,2.436,0,0,0,1.494,6.709Z" transform="translate(0 -1.064)" fill="#fff"/>
+        <path id="Path_4009" data-name="Path 4009" d="M18.716,30.693l-8.651-4L0,30.4V15.037l9.251-3.4.515,1.4L1.494,16.079V28.26l8.635-3.186L18.7,29.04l7.537-3.628V6.71a2.437,2.437,0,0,0-2.434-2.434H21.5V2.782h2.3A3.932,3.932,0,0,1,27.734,6.71V26.351Z" transform="translate(0 -1.064)" fill="#fff"/>
+        <path id="Path_4010" data-name="Path 4010" d="M28.531,22.28l-2.86-1.351.639-1.351,2.215,1.047,7.956-3.831.648,1.346Z" transform="translate(-9.819 -6.424)" fill="#fff"/>
+        <rect id="Rectangle_57" data-name="Rectangle 57" width="1.494" height="13.676" transform="translate(17.962 15.029)" fill="#fff"/>
+        <rect id="Rectangle_58" data-name="Rectangle 58" width="1.494" height="13.773" transform="translate(9.349 11.043)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

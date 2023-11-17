@@ -1,6 +1,13 @@
+import 'dart:developer';
+
 import 'package:akar_app/core/presentation/screens/home/home_screens/home_screen.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:akar_app/core/presentation/widgets/text_handler.dart';
+import 'package:akar_app/utils/base/akar_icons.dart';
+import 'package:akar_app/utils/base/base_utils_export.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNavBar extends StatefulWidget {
   static const String id = '/BottomNavBar';
@@ -12,25 +19,31 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int _page = 0;
-  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   late List<Map<String, dynamic>> _screensListWithOnSelectAction;
 
   @override
   Widget build(BuildContext context) {
+    log('screen size: ${getScreenHeight(context)}');
     _screensListWithOnSelectAction = [
       {'widget': const HomeScreen(), 'onSelect': () {}},
-      {'widget': const Scaffold(backgroundColor: Colors.amber,), 'onSelect': (){}},
-      {'widget': const Scaffold(backgroundColor: Colors.blue,), 'onSelect': (){}},
-      {'widget': const Scaffold(backgroundColor: Colors.blueGrey,), 'onSelect': (){}},
+      {'widget': const Scaffold(backgroundColor: Colors.white,), 'onSelect': (){}},
+      {'widget': const Scaffold(backgroundColor: Colors.white,), 'onSelect': (){}},
+      {'widget': const Scaffold(backgroundColor: Colors.white,), 'onSelect': (){}},
+      {'widget': const Scaffold(backgroundColor: Colors.white,), 'onSelect': (){}},
     ];
     return Scaffold(
+      // todo ==> replace this icons with the ones sent by tharwat.
         bottomNavigationBar: CurvedNavigationBar(
-          key: _bottomNavigationKey,
-          items: const [
-            Icon(Icons.add, size: 30),
-            Icon(Icons.list, size: 30),
-            Icon(Icons.compare_arrows, size: 30),
-            Icon(Icons.abc_outlined, size: 30,)
+          height: getScreenHeight(context) * .0925,
+          backgroundColor: AkarColors.white_1,
+          color: AkarColors.blue_1,
+          buttonBackgroundColor: AkarColors.transparent,
+          items: [
+            navItem(AkarIcons.searchNavIcon, 'SearchScreen'),
+            navItem(AkarIcons.mapNavIcon, 'MapScreen'),
+            navItem(AkarIcons.ordersNavIcon, 'OrdersScreen'),
+            navItem(AkarIcons.moreNavIcon, 'More'),
+            navItem(AkarIcons.homeNavIcon, 'HomeScreen'),
           ],
           onTap: (index) {
             setState(() {
@@ -45,6 +58,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
               .toList()[_page],
         ));
   }
+
+  CurvedNavigationBarItem navItem(asset, txt) => CurvedNavigationBarItem(
+    child: SvgPicture.asset(asset),
+    label: txt,
+    labelStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
+      color: AkarColors.white_1,
+    )
+  );
 }
 
 
