@@ -1,48 +1,48 @@
+import 'package:akar_app/utils/base/akar_consts.dart';
 import 'package:http/http.dart' as http;
 
 class CustomHttpMethods {
   CustomHttpMethods._();
   static final Map<String, String> _headers = {
-   
+   "sharedKey": "Ftjj#-ddtrum5261_gfRdCXooO#165?*234sEEd",
+   "langId": "en",
+   "clientId": "31"
   };
 
-  static const String _AKAR_BASE_URL = '';
-
   static Future<http.Response> makeRequest<T>(String endPoint,
-      {String method = 'GET',
+      {required String method,
       Map<String, String>? headers,
-      dynamic requestBody = const {},
-      String? userTocken}) async {
+      dynamic requestBody = const {}}) async {
     late http.Response response;
 
     try {
       switch (method.toUpperCase()) {
         case 'GET':
           response = await http.get(
-              Uri.parse('$_AKAR_BASE_URL$endPoint'),
+              Uri.parse('$AKAR_BASE_URL$endPoint'),
               headers: headers ?? _headers);
           break;
         case 'POST':
           response = await http.post(
-              Uri.parse('$_AKAR_BASE_URL$endPoint'),
+              Uri.parse('$AKAR_BASE_URL$endPoint'),
               headers: headers ?? _headers,
               body: requestBody);
           break;
         case 'PUT':
           response = await http.put(
-              Uri.parse('$_AKAR_BASE_URL$endPoint'),
+              Uri.parse('$AKAR_BASE_URL$endPoint'),
               headers: headers ?? _headers,
               body: requestBody);
           break;
         case 'PATCH':
           response = await http.patch(
-              Uri.parse('$_AKAR_BASE_URL$endPoint'),
+              Uri.parse('$AKAR_BASE_URL$endPoint'),
               headers: headers ?? _headers,
               body: requestBody);
           break;
         case 'DELETE':
           response = await http.delete(
-              Uri.parse('$_AKAR_BASE_URL$endPoint'),
+              Uri.parse('$AKAR_BASE_URL$endPoint'),
               headers: headers ?? _headers);
           break;
         default:

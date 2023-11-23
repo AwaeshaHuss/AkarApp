@@ -1,6 +1,6 @@
 abstract class HomeEvent{}
 
-class GetSomeListEvent extends HomeEvent{
+class GetHomeListEvent extends HomeEvent{
   final int id;
-  GetSomeListEvent({required this.id});
+  GetHomeListEvent({this.id = 1});
 }
