@@ -21,12 +21,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState>{
     emit(state.copyWith(status: HomeStateStatus.initial));
     Either<Fail, Response> result;
     result = await homeHttpMethodsImpl.getHomeList();
-    result.fold((l) async{
+    result.fold((l) {
       emit(state.copyWith(status: HomeStateStatus.error));
-    }, (r) async{
-      log('================676=89');
-      emit(state.copyWith(status: HomeStateStatus.loading));
+    }, 
+    (r) {
       HomeContainer homeContainer = HomeContainer.fromJson(jsonDecode(r.body));
+      // todo ==> split homeContainer in HomeStateStatus into a peices same as the Model names.
       emit(state.copyWith(status: HomeStateStatus.success, homeContainer: homeContainer));
     });
   }

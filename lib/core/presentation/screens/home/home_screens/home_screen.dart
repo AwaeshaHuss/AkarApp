@@ -38,15 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
           scrollDirection: Axis.vertical,
           child: BlocBuilder<HomeBloc, HomeState>(
             bloc: HomeBloc(homeHttpMethodsImpl: HomeHttpMethodsImpl()),
+            buildWhen: (c, p) => c != p,
             builder: (context, state) {
-              log('homeResponse: ${state.homeContainer}, homeState: ${state.status}');
-             return state.homeContainer == null 
+            log('homeResponse: ${state.homeContainer}, homeState: ${state.status}');
+             return state.homeContainer == null || state.status != HomeStateStatus.success
              ? const LodingIndicatorWidget()
               : Column(
                 children: [
                   CarouselSlider(
                     options: CarouselOptions(height: height * .25),
-                    items:  [...state.homeContainer!.headerGallery].map((i) {
+                    items:  [...state.homeContainer?.headerGallery ?? []].map((i) {
                       return Builder(
                         builder: (BuildContext context) {
                           return Container(
