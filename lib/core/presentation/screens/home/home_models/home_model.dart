@@ -21,8 +21,8 @@ class HomeContainer {
     required this.showprojectsGroups,
   });
   late final List<HeaderGalleryModel>? headerGallery;
-  late final List<HeaderOffersModel>? headerOffers;
-  late final List<HeaderWidgetsModel>? headerWidgets;
+  late final List<HeaderOffers>? headerOffers;
+  late final List<HeaderWidgets>? headerWidgets;
   late final String? partnerssectiontilte;
   late final List<PartnersModel>? partners;
   late final String? latestprojectssectiontilte;
@@ -42,8 +42,8 @@ class HomeContainer {
   
   HomeContainer.fromJson(Map<String, dynamic> json){
     headerGallery = List.from(json['headerGallery']).map((e)=>HeaderGalleryModel.fromJson(e)).toList();
-    headerOffers = List.from(json['headerOffers']).map((e)=>HeaderOffersModel.fromJson(e)).toList();
-    headerWidgets = List.from(json['headerWidgets']).map((e)=>HeaderWidgetsModel.fromJson(e)).toList();
+    headerOffers = List.from(json['headerOffers']).map((e)=>HeaderOffers.fromJson(e)).toList();
+    headerWidgets = List.from(json['headerWidgets']).map((e)=>HeaderWidgets.fromJson(e)).toList();
     partnerssectiontilte = json['partnerssectiontilte'];
     partners = List.from(json['partners']).map((e)=>PartnersModel.fromJson(e)).toList();
     latestprojectssectiontilte = json['latestprojectssectiontilte'];
@@ -107,10 +107,10 @@ class HeaderGalleryModel {
   
   HeaderGalleryModel.fromJson(Map<String, dynamic> json){
     isvideo = json['isvideo'];
-    title = null;
+    title = json['title'];
     image = json['image'];
-    screenname = null;
-    id = null;
+    screenname = json['screenname'];
+    id = json['id'];
     isLink = json['isLink'];
     linktext = json['linktext'];
   }
@@ -128,8 +128,8 @@ class HeaderGalleryModel {
   }
 }
 
-class HeaderOffersModel {
-  HeaderOffersModel({
+class HeaderOffers {
+  HeaderOffers({
     required this.isvideo,
     required this.title,
     required this.image,
@@ -144,7 +144,7 @@ class HeaderOffersModel {
   late final int? id;
   late final int? isLink;
   
-  HeaderOffersModel.fromJson(Map<String, dynamic> json){
+  HeaderOffers.fromJson(Map<String, dynamic> json){
     isvideo = json['isvideo'];
     title = json['title'];
     image = json['image'];
@@ -165,8 +165,8 @@ class HeaderOffersModel {
   }
 }
 
-class HeaderWidgetsModel {
-  HeaderWidgetsModel({
+class HeaderWidgets {
+  HeaderWidgets({
     required this.screenname,
     required this.title,
     required this.imageurl,
@@ -177,7 +177,7 @@ class HeaderWidgetsModel {
   late final String? imageurl;
   late final String? iconurl;
   
-  HeaderWidgetsModel.fromJson(Map<String, dynamic> json){
+  HeaderWidgets.fromJson(Map<String, dynamic> json){
     screenname = json['screenname'];
     title = json['title'];
     imageurl = json['imageurl'];
@@ -229,11 +229,11 @@ class LatestProjectsModel {
     required this.items,
   });
   late final String? description;
-  late final List<ItemsModel>? items;
+  late final List<Items>? items;
   
   LatestProjectsModel.fromJson(Map<String, dynamic> json){
     description = json['description'];
-    items = List.from(json['items']).map((e)=>ItemsModel.fromJson(e)).toList();
+    items = List.from(json['items']).map((e)=>Items.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -244,12 +244,12 @@ class LatestProjectsModel {
   }
 }
 
-class ItemsModel {
-  ItemsModel({
+class Items {
+  Items({
     required this.screenname,
     required this.id,
     required this.title,
-     this.image,
+    required this.image,
     required this.cityname,
     required this.icon,
   });
@@ -260,11 +260,11 @@ class ItemsModel {
   late final String? cityname;
   late final String? icon;
   
-  ItemsModel.fromJson(Map<String, dynamic> json){
+  Items.fromJson(Map<String, dynamic> json){
     screenname = json['screenname'];
     id = json['id'];
     title = json['title'];
-    image = null;
+    image = json['image'];
     cityname = json['cityname'];
     icon = json['icon'];
   }
@@ -285,10 +285,10 @@ class UnitsModel {
   UnitsModel({
     required this.items,
   });
-  late final List<ItemsModel>? items;
+  late final List<Items>? items;
   
   UnitsModel.fromJson(Map<String, dynamic> json){
-    items = List.from(json['items']).map((e)=>ItemsModel.fromJson(e)).toList();
+    items = List.from(json['items']).map((e)=>Items.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {

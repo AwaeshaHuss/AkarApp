@@ -23,31 +23,31 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     log('screen size: ${getScreenHeight(context)}');
     _screensListWithOnSelectAction = [
-      {
-        'widget': const Scaffold(
-          backgroundColor: Colors.white,
-        ),
-        'onSelect': () {}
-      },
-      {
-        'widget': const Scaffold(
-          backgroundColor: Colors.white,
-        ),
-        'onSelect': () {}
-      },
-      {
-        'widget': const Scaffold(
-          backgroundColor: Colors.white,
-        ),
-        'onSelect': () {}
-      },
-      {
-        'widget': const Scaffold(
-          backgroundColor: Colors.white,
-        ),
-        'onSelect': () {}
-      },
       {'widget': const HomeScreen(), 'onSelect': () {}},
+      {
+        'widget': const Scaffold(
+          backgroundColor: Colors.white,
+        ),
+        'onSelect': () {}
+      },
+      {
+        'widget': const Scaffold(
+          backgroundColor: Colors.white,
+        ),
+        'onSelect': () {}
+      },
+      {
+        'widget': const Scaffold(
+          backgroundColor: Colors.white,
+        ),
+        'onSelect': () {}
+      },
+      {
+        'widget': const Scaffold(
+          backgroundColor: Colors.white,
+        ),
+        'onSelect': () {}
+      },
     ];
     return Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
@@ -57,12 +57,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
           buttonBackgroundColor: AkarColors.transparent,
           animationDuration: Durations.short4,
           items: [
-            navItem(AkarIcons.moreNavIcon, 'More', _page == 0),
-            navItem(AkarIcons.ordersNavIcon, 'OrdersScreen', _page == 1),
+            navItem(AkarIcons.moreNavIcon, 'More', _page == 4),
+            navItem(AkarIcons.ordersNavIcon, 'OrdersScreen', _page == 3),
             navItem(AkarIcons.mapNavIcon, 'MapScreen', _page == 2),
-            navItem(AkarIcons.searchNavIcon, 'SearchScreen', _page == 3),
+            navItem(AkarIcons.searchNavIcon, 'SearchScreen', _page == 1),
             navItem(AkarIcons.homeNavIcon, 'HomeScreen', false),
-          ],
+          ].reversed.toList(),
           onTap: (index) {
             setState(() {
               _page = index;

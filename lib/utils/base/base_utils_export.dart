@@ -5,3 +5,4 @@ export 'akar_colors.dart';
 export 'akar_fonts.dart';
 export 'akar_consts.dart';
 export 'akar_utils.dart';
+export './akar_text_styles.dart';

@@ -9,6 +9,8 @@ class AkarIcons{
   static const String searchNavIcon = '${_iconsRootPath}search_nav.svg';
   static const String mapNavIcon = '${_iconsRootPath}map_nav.svg';
   static const String ordersNavIcon = '${_iconsRootPath}orders_nav.svg';
+  static const String placeHolder = '${_iconsRootPath}place_holder.svg';
+  static const String backIcon = '${_iconsRootPath}back_icon.svg'; 
 
   //====
   
