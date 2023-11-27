@@ -1,5 +1,5 @@
 import 'package:akar_app/core/presentation/screens/home/home_screens/home_screen.dart';
-import 'package:akar_app/core/presentation/widgets/bottom_nav_bar.dart';
+import 'package:akar_app/core/presentation/shared_widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class AkarNavigations{

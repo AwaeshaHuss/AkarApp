@@ -8,20 +8,20 @@ class FadeInNetworkWidget extends StatelessWidget {
     super.key,
     required this.width,
     required this.height,
-    required this.item,
+    required this.image,
     this.fit = BoxFit.fill,
   });
 
   final double width;
   final double height;
-  final dynamic item;
+  final dynamic image;
   final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
     return FadeInImage.assetNetwork(
      width: width, 
-     placeholder: AkarIcons.placeHolder, image: item.image ?? '',
+     placeholder: AkarIcons.placeHolder, image: image ?? '',
      fit: fit,
      placeholderErrorBuilder: (BuildContext context, Object error,
                 StackTrace? stackTrace) {

@@ -1,5 +1,5 @@
 import 'package:akar_app/core/data/cache_helper/cache_helper.dart';
-import 'package:akar_app/core/presentation/widgets/bottom_nav_bar.dart';
+import 'package:akar_app/core/presentation/shared_widgets/bottom_nav_bar.dart';
 import 'package:akar_app/utils/base/base_utils_export.dart';
 import 'package:akar_app/utils/config/bloc_providers.dart';
 import 'package:akar_app/utils/config/providers.dart';

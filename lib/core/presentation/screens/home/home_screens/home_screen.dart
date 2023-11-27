@@ -1,14 +1,15 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:akar_app/core/presentation/screens/home/home_widgets/upper_categories_widget.dart';
 import 'package:akar_app/core/presentation/screens/home/state_management/home_blocs/home_bloc.dart';
 import 'package:akar_app/core/presentation/screens/home/state_management/home_blocs/home_event.dart';
 import 'package:akar_app/core/presentation/screens/home/state_management/home_blocs/home_state.dart';
 import 'package:akar_app/core/presentation/screens/home/home_http_methods_impl/home_http_methods_impl.dart';
 import 'package:akar_app/core/presentation/screens/home/state_management/providers/home_provider.dart';
-import 'package:akar_app/core/presentation/widgets/dotted_carousel_widget.dart';
-import 'package:akar_app/core/presentation/widgets/fade_in_network_widget.dart';
-import 'package:akar_app/core/presentation/widgets/loading_indicator.dart';
+import 'package:akar_app/core/presentation/shared_widgets/dotted_carousel_widget.dart';
+import 'package:akar_app/core/presentation/shared_widgets/fade_in_network_widget.dart';
+import 'package:akar_app/core/presentation/shared_widgets/loading_indicator.dart';
 import 'package:akar_app/utils/base/base_utils_export.dart';
 import 'package:akar_app/utils/config/extensions.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -41,8 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final homeProvider = HomeProvider.watch(context);
     return SafeArea(
       top: false,
-      right: false,
-      left: false,
       bottom: false,
       child: Scaffold(
         body: SingleChildScrollView(
@@ -59,48 +58,42 @@ class _HomeScreenState extends State<HomeScreen> {
                   : Column(
                       children: [
                         DotedCarouselWidget(
-                            state: state,
-                            height: height,
+                          model: state.homeContainer?.headerGallery,
+                          height: height,
+                          homeProvider: homeProvider,
+                          width: width,
+                          backButtonVisible: true,
+                          stacked: true,
+                        ),
+                        16.height,
+                        UpperCategoriesWidget(
+                          height: height,
+                          width: width,
+                          state: state,
+                        ),
+                        16.height,
+                        DotedCarouselWidget(
+                            height: height * .425,
                             homeProvider: homeProvider,
-                            width: width),
-                            16.height,
-                            SizedBox(
-                              height: height * .1825,
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: state.homeContainer?.headerOffers?.length ?? 0,
-                                  itemBuilder: (context, index) => Padding(
-                                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 4.0),
-                                    child: SizedBox(
-                                      width: width * .3125,
-                                      child: Card(
-                                        elevation: .25,
-                                        color: AkarColors.gray_2,
-                                        shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(12.0))
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            const Spacer(),
-                                            const Spacer(),
-                                            FadeInNetworkWidget(
-                                              width: width * .25, height: height,
-                                              item: state.homeContainer?.headerOffers?[index]),
-                                              const Spacer(),
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Text('${state.homeContainer?.headerOffers?[index].title}', style: AkarTextStyles.zawiRegular14.copyWith(fontSize: 16, fontWeight: FontWeight.w300), textAlign: TextAlign.center,),
-                                            ),
-                                            const Spacer(),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                              ),
+                            width: width * .95,
+                            model: state.homeContainer?.headerOffers,
+                            backButtonVisible: false,
+                            stacked: false,
                             ),
+                            16.height,
+                            Padding(
+                              padding: const EdgeInsetsDirectional.only(start: 12.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(state.homeContainer?.latestprojectssectiontilte ?? '', style: AkarTextStyles.zawiRegular14.copyWith(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                    color: AkarColors.blue_1,
+                                  ),),
+                                ],
+                              ),
+                            )
                       ],
                     );
             },
