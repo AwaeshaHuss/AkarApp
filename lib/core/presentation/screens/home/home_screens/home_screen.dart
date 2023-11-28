@@ -93,7 +93,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),),
                                 ],
                               ),
-                            )
+                            ),
+                            16.height,
+                            // latestProjects.items[index] => GridView => check for a cool gridView pub that fits the UI for this section of the screen.
                       ],
                     );
             },
