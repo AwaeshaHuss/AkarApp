@@ -19,7 +19,7 @@ class UpperCategoriesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height * .1825,
+      height: height * .185,
       child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
@@ -35,19 +35,23 @@ class UpperCategoriesWidget extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(12.0))
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Spacer(),
-                    const Spacer(),
-                    FadeInNetworkWidget(
-                      width: width * .25, height: height,
-                      image: state.homeContainer?.headerOffers?[index].image),
-                      const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('${state.homeContainer?.latestProjects?.items?[index].title}', style: AkarTextStyles.zawiRegular14.copyWith(fontSize: 16, fontWeight: FontWeight.w300), textAlign: TextAlign.center,),
+                    SizedBox(
+                      height: height * .085,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12.0),
+                        child: FadeInNetworkWidget(
+                          width: width * .2, height: height,
+                          image: state.homeContainer?.headerOffers?[0].image),
+                      ),
                     ),
                     const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('title', style: AkarTextStyles.zawiRegular14.copyWith(fontSize: 16, fontWeight: FontWeight.w300), textAlign: TextAlign.center,),
+                    ),
                   ],
                 ),
               ),

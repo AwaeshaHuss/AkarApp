@@ -1,24 +1,15 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:akar_app/core/presentation/screens/home/home_widgets/upper_categories_widget.dart';
 import 'package:akar_app/core/presentation/screens/home/state_management/home_blocs/home_bloc.dart';
 import 'package:akar_app/core/presentation/screens/home/state_management/home_blocs/home_event.dart';
 import 'package:akar_app/core/presentation/screens/home/state_management/home_blocs/home_state.dart';
-import 'package:akar_app/core/presentation/screens/home/home_http_methods_impl/home_http_methods_impl.dart';
 import 'package:akar_app/core/presentation/screens/home/state_management/providers/home_provider.dart';
 import 'package:akar_app/core/presentation/shared_widgets/dotted_carousel_widget.dart';
-import 'package:akar_app/core/presentation/shared_widgets/fade_in_network_widget.dart';
 import 'package:akar_app/core/presentation/shared_widgets/loading_indicator.dart';
+import 'package:akar_app/core/presentation/shared_widgets/widgets_export.dart';
 import 'package:akar_app/utils/base/base_utils_export.dart';
 import 'package:akar_app/utils/config/extensions.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/HomeScreen';
@@ -44,9 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
       top: false,
       bottom: false,
       child: Scaffold(
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: BlocBuilder<HomeBloc, HomeState>(
+        resizeToAvoidBottomInset: false,
+        extendBody: true,
+        body: 
+          BlocBuilder<HomeBloc, HomeState>(
             // bloc: HomeBloc(homeHttpMethodsImpl: HomeHttpMethodsImpl()),
             buildWhen: (previous, current) =>
                 current != previous && current.status.isLoading ||
@@ -55,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return state.homeContainer == null ||
                       state.status != HomeStateStatus.success
                   ? const LodingIndicatorWidget()
-                  : Column(
+                  : ListView(
                       children: [
                         DotedCarouselWidget(
                           model: state.homeContainer?.headerGallery,
@@ -96,12 +88,99 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             16.height,
                             // latestProjects.items[index] => GridView => check for a cool gridView pub that fits the UI for this section of the screen.
+                            // card => column => image, 
+                            // row => image, text
+                            // text
+                            Container(
+                              height: height * .275,
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(7.0),
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemCount: state.homeContainer?.latestProjects?.items?.length ?? 0,
+                                itemBuilder: (context, index) => Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                  child: Container(
+                                    width: width * .36125,
+                                    decoration: const BoxDecoration(
+                                      color: AkarColors.white_2,
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0))
+                                    ),
+                                    child: Card(
+                                    elevation: 1.125,
+                                    child: SingleChildScrollView(
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          ClipRRect(
+                                              borderRadius: const BorderRadius.only(topRight: Radius.circular(12.0), topLeft: Radius.circular(12.0)),
+                                              child: FadeInNetworkWidget(image: state.homeContainer?.latestProjects?.items?[index].image)),
+                                              6.height,
+                                              Row(
+                                                children: [
+                                                  FadeInNetworkWidget(image: state.homeContainer?.latestProjects?.items?[index].icon ?? ''),
+                                              6.width,
+                                              SizedBox(
+                                              width: width * .25,
+                                              child: Text('${state.homeContainer?.latestProjects?.items?[index].title ?? 'title'}', overflow: TextOverflow.ellipsis, maxLines: 3,))
+                                                ],
+                                              ),
+                                              6.height,
+                                              Center(child: Text('${state.homeContainer?.latestProjects?.description ?? 'description'}'))
+                                        ],
+                                      ),
+                                    ),
+                                                                  ),
+                                  ),
+                                )),
+                            )
                       ],
                     );
             },
           ),
         ),
-      ),
     );
   }
 }
+
+
+/*
+
+Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 7.0),
+                              width: width,
+                              height: height * .25,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemCount: state.homeContainer?.latestProjects?.items?.length ?? 0,
+                                itemBuilder: (context, index) => Card(
+                                color: AkarColors.white_2,
+                                elevation: 1.125,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.0)),
+                                child: SizedBox(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: const BorderRadius.only(topRight: Radius.circular(12.0), topLeft: Radius.circular(12.0)),
+                                        child: FadeInNetworkWidget(width: width * .275, height: height * .125, image: state.homeContainer?.latestProjects?.items?[index].image)),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            FadeInNetworkWidget(width: width * .125, height: height * .1, image: state.homeContainer?.latestProjects?.items?[index].icon ?? ''),
+                                            SizedBox(
+                                              width: width * .3125,
+                                              child: Text('${state.homeContainer?.latestProjects?.items?[index].title ?? 'title'}', overflow: TextOverflow.ellipsis, maxLines: 1,))
+                                          ],
+                                        )
+                                    ],
+                                  ),
+                                ),
+                              ),),
+                            ),
+
+*/

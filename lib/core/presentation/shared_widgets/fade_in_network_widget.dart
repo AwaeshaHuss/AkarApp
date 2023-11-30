@@ -6,14 +6,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 class FadeInNetworkWidget extends StatelessWidget {
   const FadeInNetworkWidget({
     super.key,
-    required this.width,
-    required this.height,
+     this.width,
+     this.height,
     required this.image,
     this.fit = BoxFit.fill,
   });
 
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final dynamic image;
   final BoxFit fit;
 
@@ -26,8 +26,8 @@ class FadeInNetworkWidget extends StatelessWidget {
      placeholderErrorBuilder: (BuildContext context, Object error,
                 StackTrace? stackTrace) {
           return Container(
-            width: width * .125,
-            height: height * .1,
+            width: width,
+            height: height,
             decoration: const BoxDecoration(
               color: AkarColors.transparent,
               shape: BoxShape.circle,
@@ -35,16 +35,16 @@ class FadeInNetworkWidget extends StatelessWidget {
             child: Center(
                 child: SvgPicture.asset(
               AkarIcons.placeHolder,
-              width: width * .048,
-              height: height * .023,
+              width: width,
+              height: height,
             )),
           );
         },
         imageErrorBuilder: (BuildContext context,
             Object error, StackTrace? stackTrace) {
           return Container(
-            width: width * .58,
-            height: height * .197,
+            width: width,
+            height: height,
             decoration: const BoxDecoration(
               color: AkarColors.blue_2,
               shape: BoxShape.circle,
@@ -52,8 +52,8 @@ class FadeInNetworkWidget extends StatelessWidget {
             child: Center(
                 child: SvgPicture.asset(
               AkarIcons.placeHolder,
-              width: width * .048,
-              height: height * .023,
+              width: width,
+              height: height,
             )),
           );
         },
